@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public float speed=3.0f;
+    public int fallOff=-1;
     private Rigidbody enemyRb;
     private GameObject player;
     void Start()
@@ -17,5 +18,8 @@ public class Enemy : MonoBehaviour
     void Update()
     {   Vector3 lookDirection=(player.transform.position-transform.position);
         enemyRb.AddForce(lookDirection.normalized*speed);
+        if(transform.position.y<fallOff){
+            gameObject.SetActive(false);
+        } 
     }
 }

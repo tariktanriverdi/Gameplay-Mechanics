@@ -12,10 +12,11 @@ public class ObjectPool : MonoBehaviour
     private void Awake()
     {
         SharedInstance = this;
+        pooledObjects = new List<GameObject>();
     }
     private void Start()
     {
-        pooledObjects = new List<GameObject>();
+        
         GameObject tmp;
         for (int i = 0; i < amountToPool; i++)
         {
@@ -29,10 +30,16 @@ public class ObjectPool : MonoBehaviour
         for (int i = 0; i < amountToPool; i++)
         {
             if (!pooledObjects[i].activeInHierarchy)
-            {   
+            {
                 return pooledObjects[i];
             }
         }
         return null;
+    }
+    public GameObject  AddObject()
+    {
+        GameObject tmp = Instantiate(objectToPool);
+        return tmp;
+
     }
 }

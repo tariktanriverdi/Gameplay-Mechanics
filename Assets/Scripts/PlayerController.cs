@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
         {
             hasPowerup = true;
             powerupIndicator.SetActive(true);
-            Destroy(other.gameObject);
+          other.gameObject.SetActive(false);
             StartCoroutine(PowerupCountdownRoutine());
         }
     }
